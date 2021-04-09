@@ -3,8 +3,6 @@ package grpc
 import (
 	"context"
 	"fmt"
-	"io/ioutil"
-	"math/rand"
 	"time"
 
 	pb "example.com/user_name/sample_grpc_web_app/services/server/pb/picture"
@@ -13,30 +11,6 @@ import (
 
 // GetPictures は、filesディレクトリに含まれている画像を、指定された枚数、クライアントに返却する
 func (s *Server) GetPictures(ctx context.Context, in *pb.GetPicturesRequest) (*pb.GetPicturesReply, error) {
-	// selectedFilePaths, err := getRandomFiles(in.GetNum()) // 要素のシャッフル
-	// var pictures [][]byte
-	// if err != nil {
-	// 	return &pb.GetPicturesReply{
-	// 		Pictures: pictures,
-	// 	}, err
-	// }
-	// for _, fileName := range selectedFilePaths {
-	// 	file, err := os.Open(fileName)
-	// 	if err != nil {
-	// 		return &pb.GetPicturesReply{
-	// 			Pictures: pictures,
-	// 		}, err
-	// 	}
-
-	// 	data, err := ioutil.ReadAll(file)
-	// 	if err != nil {
-	// 		return &pb.GetPicturesReply{
-	// 			Pictures: pictures,
-	// 		}, err
-	// 	}
-	// 	pictures = append(pictures, data)
-	// }
-
 	pictures, err := requestDBManager(in.GetNum())
 	if err != nil {
 		return &pb.GetPicturesReply{
@@ -48,33 +22,6 @@ func (s *Server) GetPictures(ctx context.Context, in *pb.GetPicturesRequest) (*p
 		// Pictures: pictures,
 		Pictures: pictures,
 	}, nil
-}
-
-func getRandomFiles(num uint32) ([]string, error) {
-	dir := "/services/server/files/"
-	file, err := ioutil.ReadDir(dir)
-	if err != nil {
-		return nil, err
-	}
-	fileNum := uint32(len(file))       // ファイルの個数
-	indexes := make([]uint32, fileNum) //
-	for i := uint32(0); i < fileNum; i++ {
-		indexes[i] = i
-	}
-	rand.Shuffle(len(indexes), func(i, j int) {
-		indexes[i], indexes[j] = indexes[j], indexes[i]
-	})
-
-	indexLen := num
-	if num > fileNum {
-		indexLen = fileNum
-	}
-
-	var newFileNames []string
-	for i := uint32(0); i < indexLen; i++ {
-		newFileNames = append(newFileNames, dir+file[indexes[i]].Name())
-	}
-	return newFileNames, nil
 }
 
 func requestDBManager(num uint32) ([][]byte, error) {

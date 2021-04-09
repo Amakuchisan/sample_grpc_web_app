@@ -4,7 +4,7 @@ import (
 	"context"
 
 	pb "github.com/Amakuchisan/sample_grpc_web_app/services/db-manager/pb/picture"
-	"github.com/Amakuchisan/tsuginiyomu/services/manager/manager"
+	"github.com/Amakuchisan/sample_grpc_web_app/services/db-manager/manager"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

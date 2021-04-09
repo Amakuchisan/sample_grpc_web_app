@@ -17,9 +17,9 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='picture.proto',
   package='picture',
   syntax='proto3',
-  serialized_options=b'Z*example.com/user_name/sample/pb/go/picture',
+  serialized_options=b'Z*example.com/user_name/sample_grpc_web_app/pb/go/picture',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\rpicture.proto\x12\x07picture\"!\n\x12GetPicturesRequest\x12\x0b\n\x03num\x18\x01 \x01(\r\"$\n\x10GetPicturesReply\x12\x10\n\x08pictures\x18\x01 \x03(\x0c\x32R\n\x07Picture\x12G\n\x0bGetPictures\x12\x1b.picture.GetPicturesRequest\x1a\x19.picture.GetPicturesReply\"\x00\x42,Z*example.com/user_name/sample/pb/go/pictureb\x06proto3'
+  serialized_pb=b'\n\rpicture.proto\x12\x07picture\"!\n\x12GetPicturesRequest\x12\x0b\n\x03num\x18\x01 \x01(\r\"$\n\x10GetPicturesReply\x12\x10\n\x08pictures\x18\x01 \x03(\x0c\x32R\n\x07Picture\x12G\n\x0bGetPictures\x12\x1b.picture.GetPicturesRequest\x1a\x19.picture.GetPicturesReply\"\x00\x42,Z*example.com/user_name/sample_grpc_web_app/pb/go/pictureb\x06proto3'
 )
 
 

@@ -1,4 +1,4 @@
-module example.com/user_name/sample/pb/protoc-go
+module example.com/user_name/sample_grpc_web_app/pb/protoc-go
 
 go 1.16
 

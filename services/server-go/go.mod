@@ -1,4 +1,4 @@
-module example.com/user_name/sample/services/server
+module example.com/user_name/sample_grpc_web_app/services/server
 
 go 1.16
 

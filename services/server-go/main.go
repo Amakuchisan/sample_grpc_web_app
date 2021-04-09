@@ -4,8 +4,8 @@ import (
 	"log"
 	"net"
 
-	server "example.com/user_name/sample/services/server/grpc"
-	pb "example.com/user_name/sample/services/server/pb/picture"
+	server "example.com/user_name/sample_grpc_web_app/services/server/grpc"
+	pb "example.com/user_name/sample_grpc_web_app/services/server/pb/picture"
 
 	"github.com/pkg/errors"
 	"google.golang.org/grpc"

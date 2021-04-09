@@ -7,7 +7,7 @@ import (
 	"math/rand"
 	"time"
 
-	pb "example.com/user_name/sample/services/server/pb/picture"
+	pb "example.com/user_name/sample_grpc_web_app/services/server/pb/picture"
 	"google.golang.org/grpc"
 )
 

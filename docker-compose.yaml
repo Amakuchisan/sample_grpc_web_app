@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  server-go:
+    container_name: sample-server-go-container
+    tty: true
+    stdin_open: true
+    environment:
+      TZ: Japan
+    build:
+      context: services/server-go/
+    # ports:
+    #   - "50050:50050"
+    depends_on:
+      - db
+
+  # server-python:
+  #   container_name: sample-server-python-container
+  #   tty: true
+  #   stdin_open: true
+  #   environment:
+  #     TZ: Japan
+  #   build:
+  #     context: services/server-python/
+  # # ports:
+  # #   - "50050:50050"
+  #   depends_on:
+  #     - db
+
+  db-manager:
+    container_name: sample-db-manager-container
+    tty: true
+    stdin_open: true
+    environment:
+      TZ: Japan
+      DATABASE_DSN: sample:sample@tcp(db)/sample
+    build:
+      context: services/db-manager/
+    # ports:
+    #   - "50051:50051"
+    depends_on:
+      - db
+
+  db:
+    container_name: sample-mysql-container
+    image: mysql:8.0.20
+    command: mysqld --character-set-server=utf8mb4 --default_authentication_plugin=mysql_native_password --collation-server=utf8mb4_bin --init-connect='SET NAMES utf8mb4'
+    environment:
+      TZ: Japan
+      MYSQL_ROOT_PASSWORD: sample
+      MYSQL_USER: sample
+      MYSQL_PASSWORD: sample
+      MYSQL_DATABASE: sample
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10 
+    volumes:
+      - ./db/init:/docker-entrypoint-initdb.d

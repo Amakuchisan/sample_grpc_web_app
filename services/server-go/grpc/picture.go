@@ -2,7 +2,6 @@ package grpc
 
 import (
 	"context"
-	"fmt"
 	"time"
 
 	pb "example.com/user_name/sample_grpc_web_app/services/server/pb/picture"
@@ -25,7 +24,6 @@ func (s *Server) GetPictures(ctx context.Context, in *pb.GetPicturesRequest) (*p
 }
 
 func requestDBManager(num uint32) ([][]byte, error) {
-	fmt.Println("requestDB")
 	address := "db-manager:50051"
 	conn, err := grpc.Dial(
 		address,
@@ -45,7 +43,5 @@ func requestDBManager(num uint32) ([][]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	fmt.Println("get reply")
-	fmt.Println(reply)
 	return reply.GetPictures(), nil
 }

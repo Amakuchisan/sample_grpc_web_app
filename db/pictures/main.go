@@ -33,7 +33,7 @@ func insertPictures() error {
 
 	query := fmt.Sprintf("INSERT INTO picture(image) VALUES (\"%s\");", strings.Join(pictures, "\"), (\""))
 
-	file, err := os.Create("../init/2_insert.sql")
+	file, err := os.Create("2_insert.sql")
 	if err != nil {
 		return err
 	}

@@ -17,9 +17,9 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='picture.proto',
   package='picture',
   syntax='proto3',
-  serialized_options=b'Z*example.com/user_name/sample_grpc_web_app/pb/go/picture',
+  serialized_options=b'Z*example.com/user_name/sample/pb/go/picture',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\rpicture.proto\x12\x07picture\"!\n\x12GetPicturesRequest\x12\x0b\n\x03num\x18\x01 \x01(\r\"$\n\x10GetPicturesReply\x12\x10\n\x08pictures\x18\x01 \x03(\x0c\x32R\n\x07Picture\x12G\n\x0bGetPictures\x12\x1b.picture.GetPicturesRequest\x1a\x19.picture.GetPicturesReply\"\x00\x42,Z*example.com/user_name/sample_grpc_web_app/pb/go/pictureb\x06proto3'
+  serialized_pb=b'\n\rpicture.proto\x12\x07picture\"!\n\x12GetPicturesRequest\x12\x0b\n\x03num\x18\x01 \x01(\r\"$\n\x10GetPicturesReply\x12\x10\n\x08pictures\x18\x01 \x03(\x0c\")\n\x16StreamGetPicturesReply\x12\x0f\n\x07picture\x18\x01 \x01(\x0c\x32\xa9\x01\n\x07Picture\x12G\n\x0bGetPictures\x12\x1b.picture.GetPicturesRequest\x1a\x19.picture.GetPicturesReply\"\x00\x12U\n\x11StreamGetPictures\x12\x1b.picture.GetPicturesRequest\x1a\x1f.picture.StreamGetPicturesReply\"\x00\x30\x01\x42,Z*example.com/user_name/sample/pb/go/pictureb\x06proto3'
 )
 
 
@@ -88,8 +88,41 @@ _GETPICTURESREPLY = _descriptor.Descriptor(
   serialized_end=97,
 )
 
+
+_STREAMGETPICTURESREPLY = _descriptor.Descriptor(
+  name='StreamGetPicturesReply',
+  full_name='picture.StreamGetPicturesReply',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='picture', full_name='picture.StreamGetPicturesReply.picture', index=0,
+      number=1, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=99,
+  serialized_end=140,
+)
+
 DESCRIPTOR.message_types_by_name['GetPicturesRequest'] = _GETPICTURESREQUEST
 DESCRIPTOR.message_types_by_name['GetPicturesReply'] = _GETPICTURESREPLY
+DESCRIPTOR.message_types_by_name['StreamGetPicturesReply'] = _STREAMGETPICTURESREPLY
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 GetPicturesRequest = _reflection.GeneratedProtocolMessageType('GetPicturesRequest', (_message.Message,), {
@@ -106,6 +139,13 @@ GetPicturesReply = _reflection.GeneratedProtocolMessageType('GetPicturesReply', 
   })
 _sym_db.RegisterMessage(GetPicturesReply)
 
+StreamGetPicturesReply = _reflection.GeneratedProtocolMessageType('StreamGetPicturesReply', (_message.Message,), {
+  'DESCRIPTOR' : _STREAMGETPICTURESREPLY,
+  '__module__' : 'picture_pb2'
+  # @@protoc_insertion_point(class_scope:picture.StreamGetPicturesReply)
+  })
+_sym_db.RegisterMessage(StreamGetPicturesReply)
+
 
 DESCRIPTOR._options = None
 
@@ -116,8 +156,8 @@ _PICTURE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=99,
-  serialized_end=181,
+  serialized_start=143,
+  serialized_end=312,
   methods=[
   _descriptor.MethodDescriptor(
     name='GetPictures',
@@ -126,6 +166,16 @@ _PICTURE = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_GETPICTURESREQUEST,
     output_type=_GETPICTURESREPLY,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='StreamGetPictures',
+    full_name='picture.Picture.StreamGetPictures',
+    index=1,
+    containing_service=None,
+    input_type=_GETPICTURESREQUEST,
+    output_type=_STREAMGETPICTURESREPLY,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),

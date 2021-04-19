@@ -19,12 +19,23 @@ class PictureStub(object):
                 request_serializer=picture__pb2.GetPicturesRequest.SerializeToString,
                 response_deserializer=picture__pb2.GetPicturesReply.FromString,
                 )
+        self.StreamGetPictures = channel.unary_stream(
+                '/picture.Picture/StreamGetPictures',
+                request_serializer=picture__pb2.GetPicturesRequest.SerializeToString,
+                response_deserializer=picture__pb2.StreamGetPicturesReply.FromString,
+                )
 
 
 class PictureServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def GetPictures(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def StreamGetPictures(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -37,6 +48,11 @@ def add_PictureServicer_to_server(servicer, server):
                     servicer.GetPictures,
                     request_deserializer=picture__pb2.GetPicturesRequest.FromString,
                     response_serializer=picture__pb2.GetPicturesReply.SerializeToString,
+            ),
+            'StreamGetPictures': grpc.unary_stream_rpc_method_handler(
+                    servicer.StreamGetPictures,
+                    request_deserializer=picture__pb2.GetPicturesRequest.FromString,
+                    response_serializer=picture__pb2.StreamGetPicturesReply.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -62,5 +78,22 @@ class Picture(object):
         return grpc.experimental.unary_unary(request, target, '/picture.Picture/GetPictures',
             picture__pb2.GetPicturesRequest.SerializeToString,
             picture__pb2.GetPicturesReply.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def StreamGetPictures(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/picture.Picture/StreamGetPictures',
+            picture__pb2.GetPicturesRequest.SerializeToString,
+            picture__pb2.StreamGetPicturesReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

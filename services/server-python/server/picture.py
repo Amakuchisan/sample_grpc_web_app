@@ -9,3 +9,9 @@ class Picture(picture_pb2_grpc.PictureServicer):
             stub = picture_pb2_grpc.PictureStub(channel)
             response = stub.GetPictures(picture_pb2.GetPicturesRequest(num=request.num))
         return response
+
+    def StreamGetPictures(self, request, context) -> picture_pb2.StreamGetPicturesReply():
+        with grpc.insecure_channel('db-manager:50051') as channel:
+            stub = picture_pb2_grpc.PictureStub(channel)
+            for response in stub.StreamGetPictures(picture_pb2.GetPicturesRequest(num=request.num)):
+                yield response

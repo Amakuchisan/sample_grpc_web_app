@@ -7,5 +7,7 @@ build: proto
 up:
 	docker-compose up -d
 .PHONY: proto
-proto:
+proto: pb/js/picture/picture_pb.js
 	# make .proto
+pb/js/picture/picture_pb.js: pb/picture.proto
+	bash ./pb/scripts/picture-compile.sh

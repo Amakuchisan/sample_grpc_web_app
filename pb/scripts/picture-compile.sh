@@ -33,3 +33,12 @@ mkdir -p ../services/db-manager/pb
 cp -r ./go/* ../services/server-go/pb/
 cp -r ./go/* ../services/db-manager/pb/
 cp -r ./python/* ../services/server-python/pb/
+
+docker build protoc-web -t streaming-protoc-web
+mkdir -p js/picture
+docker run -v "$(pwd):/pb" -w /pb --rm streaming-protoc-web \
+  protoc --proto_path=. picture.proto \
+    --js_out=import_style=commonjs:js/picture \
+    --grpc-web_out=import_style=typescript,mode=grpcwebtext:js/picture
+mkdir -p ../services/client/src/pb
+cp -r ./js/* ../services/client/src/pb/

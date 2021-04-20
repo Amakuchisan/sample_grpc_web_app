@@ -57,3 +57,11 @@ services:
       retries: 10 
     volumes:
       - ./db/init:/docker-entrypoint-initdb.d
+
+  proxy:
+    container_name: sample-proxy-container
+    image: envoyproxy/envoy-dev:1f642ab20b8975654482411537a6bdc5e2f6c4f6
+    ports:
+      - "8080:8080"
+    volumes:
+    - ./services/proxy/envoy.yaml:/etc/envoy/envoy.yaml

@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option go_package = "example.com/user_name/sample/pb/go/picture";
+package picture;
+
+service Picture {
+  rpc GetPictures (GetPicturesRequest) returns (GetPicturesReply) {}
+  rpc StreamGetPictures (GetPicturesRequest) returns (stream StreamGetPicturesReply) {}
+}
+
+message GetPicturesRequest {
+  uint32 num = 1;
+}
+
+message GetPicturesReply {
+  repeated bytes pictures = 1;
+}
+
+message StreamGetPicturesReply {
+  bytes picture = 1;
+}
